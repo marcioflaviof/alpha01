@@ -13,6 +13,7 @@ func createHandler() (handler *mux.Router) {
 
 	// associate register user route
 	handler.HandleFunc("/", control.RegisterUser)
+	handler.HandleFunc("/test/{id}", control.GetTestID)
 
 	// returns handle
 	return
