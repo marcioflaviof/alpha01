@@ -6,13 +6,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func createHandler() (handler *mux.Router) {
+func createHandler() (r *mux.Router) {
 
 	// creats router
-	handler = mux.NewRouter()
+	r = mux.NewRouter()
 
 	// associate register user route
-	handler.HandleFunc("/", control.RegisterUser)
+	r.HandleFunc("/", control.RegisterUser).Methods("POST")
 
 	// returns handle
 	return
