@@ -12,7 +12,7 @@ func createHandler() (r *mux.Router) {
 	r = mux.NewRouter()
 
 	// associate register user route
-	r.HandleFunc("/", control.RegisterUser).Methods("POST")
+	r.HandleFunc("/", control.CovidData)
 
 	// returns handle
 	return

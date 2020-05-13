@@ -6,7 +6,7 @@ package configs
 const (
 
 	// defines ip and port address for server instance
-	SERVER_ADDR = "192.168.0.6:8080"
+	SERVER_ADDR = "localhost:8080"
 
 	// host for mongo db
 	MONGO_HOST = "mongodb://localhost:27017"
