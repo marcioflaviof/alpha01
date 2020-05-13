@@ -41,13 +41,17 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 	var casos []Caso
 	var mortes []CasoseMortes
 
-	url := "https://covid-api-brasil.herokuapp.com/casos/2020-05-06"
+	d := time.Now().AddDate(0, 0, -1)
+
+	log.Println(d.Format("2006-01-02"))
+
+	url := "https://covid-api-brasil.herokuapp.com/casos/" + d.Format("2006-01-02")
 
 	testClient := http.Client{
 		Timeout: time.Second * 5, // Maximum of 2 secs
 	}
 
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+	req, err := http.NewRequest(http.MethodGet, string(url), nil)
 	if err != nil {
 		log.Fatal(err)
 	}
