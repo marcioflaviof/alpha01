@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 	"time"
 )
 
@@ -27,18 +26,9 @@ type CasoseMortes struct {
 	Mortes int `json:"mortes"`
 }
 
-func RegisterUser(w http.ResponseWriter, r *http.Request) {
-
-	message := r.URL.Path
-	message = strings.TrimPrefix(message, "/")
-	message = "Hello " + message
-	w.Write([]byte(message))
-}
-
+// CovidData pega os dados da data de ontem sobre o covid
 func CovidData(w http.ResponseWriter, r *http.Request) {
 
-	//var cases interface{}
-	var casos []Caso
 	var mortes []CasoseMortes
 
 	d := time.Now().AddDate(0, 0, -1)
@@ -66,16 +56,9 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	cases1 := casos
-
 	//log.Println(string(body))
 
-	jsonErr := json.Unmarshal(body, &cases1)
-	if jsonErr != nil {
-		log.Fatal(jsonErr)
-	}
-
-	jsonErr = json.Unmarshal(body, &mortes)
+	jsonErr := json.Unmarshal(body, &mortes)
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
