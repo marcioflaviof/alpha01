@@ -1,16 +1,12 @@
 package models
 
 type Test struct{
-	TestID string `json:"testid"`
-	Name string `json:"name"`
-	Questions []QuestionList
+	Test_ID string `json:"test_id"`
+	Test_Name string `json:"test_name"`
+	Test_Questions []QuestionList
 }
 
 type QuestionList struct{
-	Text string `json:"text"`
-	Options []OptionList
-}
-
-type OptionList struct{
-	Description string `json:"description"`
+	Title string `json:"title"`
+	Options []string `json:"options"`
 }

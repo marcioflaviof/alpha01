@@ -12,8 +12,15 @@ func createHandler() (handler *mux.Router) {
 	handler = mux.NewRouter()
 
 	// associate register user route
-	handler.HandleFunc("/", control.RegisterUser)
 	handler.HandleFunc("/test/{id}", control.GetTestID)
+
+	//paginaprincipal GET
+	//handler.HandleFunc("/", control.MainMenu).Methods("GET")
+	//questionario GET
+	handler.HandleFunc("/test", control.GetTest).Methods("GET")
+	//resultado POST (resultado no response)
+	handler.HandleFunc("/result", control.PostResult).Methods("POST")
+
 
 	// returns handle
 	return

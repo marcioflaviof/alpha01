@@ -13,9 +13,24 @@ const (
 )
 
 //=========================
-//	Paths HTTP
+//	HTTP Routes
 //=========================
 const (
 	USER_PATH  = "/user/"
 	LOGIN_PATH = "/login/"
+)
+
+//========================
+//  DB Collections
+//========================
+const (
+	TEST_COLLECTION = "tests"
+	RESULT_COLLECTION = "results"
+)
+
+//========================
+//  Default Messages
+//========================
+const (
+	RESPONSE_ERRO = `{"msg":"ocorreu um erro"}`
 )
