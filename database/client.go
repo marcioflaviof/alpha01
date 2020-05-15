@@ -1,13 +1,15 @@
 package database
 
-import ( "go.mongodb.org/mongo-driver/mongo"
-		 "go.mongodb.org/mongo-driver/mongo/options" 	
-		 
-		 "alpha01/configs"
+import (
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 
-		 "context"
-		 "time"
-		 "log" )
+	"alpha01/configs"
+
+	"context"
+	"log"
+	"time"
+)
 
 var Client *mongo.Client
 
@@ -22,7 +24,7 @@ func CreateClient() {
 		panic(err)
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1 * time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 
 	err = Client.Connect(ctx)
 

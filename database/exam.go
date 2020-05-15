@@ -1,12 +1,15 @@
 package database
 
-import ( "go.mongodb.org/mongo-driver/bson"
-		 "alpha01/models"
-		 "alpha01/configs"
-         "context"
-         "log" )
+import (
+	"alpha01/configs"
+	"alpha01/models"
+	"context"
+	"log"
 
-func SearchExamID(id string) (t models.Exam, err error){
+	"go.mongodb.org/mongo-driver/bson"
+)
+
+func SearchExamID(id string) (t models.Exam, err error) {
 
 	// select exams collection
 	c := Db.Collection(configs.EXAM_COLLECTION)
@@ -27,41 +30,41 @@ func SearchExamID(id string) (t models.Exam, err error){
 	return
 }
 
-func insertExam(t models.Exam) (err error){
+func insertExam(t models.Exam) (err error) {
 
 	// select the collection of exams
 	c := Db.Collection(configs.EXAM_COLLECTION)
 
 	// insert exam in collection of exams
-	exam, err := c.InsertOne(context.TODO(),t)
+	exam, err := c.InsertOne(context.TODO(), t)
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming in insertexam: %v, %v",err,t)
+		log.Printf("[ERROR] probleming in insertexam: %v, %v", err, t)
 	}
 
 	// confirm action of inserting a exam
-	log.Printf("[INFO] exam inserted: %v",exam)
+	log.Printf("[INFO] exam inserted: %v", exam)
 
 	return
 }
 
-func SearchAllExams() (exams []models.Exam, err error){
-	c:= Db.Collection(configs.EXAM_COLLECTION)
+func SearchAllExams() (exams []models.Exam, err error) {
+	c := Db.Collection(configs.EXAM_COLLECTION)
 
 	cursor, err := c.Find(context.TODO(), bson.D{})
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming searching All exams: %v, %v",err,cursor)
+		log.Printf("[ERROR] probleming searching All exams: %v, %v", err, cursor)
 		return
 	}
 
-	err = cursor.All(context.TODO(),&exams)
+	err = cursor.All(context.TODO(), &exams)
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming searching All exams: %v, %v",err,cursor)
+		log.Printf("[ERROR] probleming searching All exams: %v, %v", err, cursor)
 		return
 	}
 
@@ -69,4 +72,3 @@ func SearchAllExams() (exams []models.Exam, err error){
 
 	return
 }
-

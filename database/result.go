@@ -1,32 +1,35 @@
 package database
 
-import ( "go.mongodb.org/mongo-driver/bson"
-		 "alpha01/models"
-		 "alpha01/configs"
-         "context"
-         "log" )
+import (
+	"alpha01/configs"
+	"alpha01/models"
+	"context"
+	"log"
 
-func InsertResult(r models.Result)(err error){
-	
+	"go.mongodb.org/mongo-driver/bson"
+)
+
+func InsertResult(r models.Result) (err error) {
+
 	//utilize a coleção de resultados
 	c := Db.Collection(configs.RESULT_COLLECTION)
 
 	// insira o resultado
-	rslt, err := c.InsertOne(context.TODO(),r)
+	rslt, err := c.InsertOne(context.TODO(), r)
 
 	// notifique caso ocorra algum erro
-	if err != nil{
-		log.Printf("[ERRO] cannot insert Result: %v %v",r,err)
+	if err != nil {
+		log.Printf("[ERRO] cannot insert Result: %v %v", r, err)
 		return
 	}
 
 	// informe que finalizou a operação
-	log.Printf("[INFO] a result was inserted: %v",rslt)
+	log.Printf("[INFO] a result was inserted: %v", rslt)
 
-	return 
+	return
 }
 
-func SearchResult(name string) (r models.Result, err error){
+func SearchResult(name string) (r models.Result, err error) {
 
 	// utilize a coleção de resultados
 	c := Db.Collection(configs.RESULT_COLLECTION)

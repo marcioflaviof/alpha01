@@ -1,5 +1,5 @@
 package models
 
-type Analysis struct{
+type Analysis struct {
 	Mean float32
 }

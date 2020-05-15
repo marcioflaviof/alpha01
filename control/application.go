@@ -1,20 +1,20 @@
 package control
 
-import(
-	"alpha01/database"
+import (
 	"alpha01/configs"
+	"alpha01/database"
 	"alpha01/models"
 	"encoding/json"
-	"net/http"
 	"log"
+	"net/http"
 )
 
-func MainMenu(w http.ResponseWriter, r *http.Request){
+func MainMenu(w http.ResponseWriter, r *http.Request) {
 	var m models.Menu
 
 	avl, err := SearchAvaliableExams()
 
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(configs.RESPONSE_ERRO))
 		return
@@ -33,23 +33,23 @@ func MainMenu(w http.ResponseWriter, r *http.Request){
 	w.Write([]byte(rsp))
 }
 
-func SearchAvaliableExams() (avl []string, err error){
+func SearchAvaliableExams() (avl []string, err error) {
 
 	var exams []models.Exam
 
 	exams, err = database.SearchAllExams()
 
 	if err != nil {
-		log.Printf("[ERROR] probleming searching avaliable exams: %v, %v",err,exams)
+		log.Printf("[ERROR] probleming searching avaliable exams: %v, %v", err, exams)
 		return
 	}
 
-	for _,tst := range exams{
-		avl = append(avl,tst.Exam_ID)
+	for _, tst := range exams {
+		avl = append(avl, tst.Exam_ID)
 	}
 
 	// confirm action of inserting a exam
-	log.Printf("[INFO] avaliable exams: %v",avl)
+	log.Printf("[INFO] avaliable exams: %v", avl)
 
 	return
 }

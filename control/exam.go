@@ -1,24 +1,24 @@
 package control
 
 import (
-	"github.com/gorilla/mux"
 	"alpha01/database"
 	"encoding/json"
 	"net/http"
-	"strings"
+
+	"github.com/gorilla/mux"
 )
 
-func GetExamID(w http.ResponseWriter, r *http.Request){
+func GetExamID(w http.ResponseWriter, r *http.Request) {
 	//get the ID in URL
 	vars := mux.Vars(r)
 	num_id := vars["id"]
-	//n_id, _ := strconv.Atoi(num_id) 
+	//n_id, _ := strconv.Atoi(num_id)
 
 	//search the exam with the ID
 	exam, err := database.SearchExamID(num_id)
 
 	//check if none searching error occurs
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -27,7 +27,7 @@ func GetExamID(w http.ResponseWriter, r *http.Request){
 	resp, err := json.Marshal(exam)
 
 	//check if none parsing error occurs
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 
@@ -36,12 +36,12 @@ func GetExamID(w http.ResponseWriter, r *http.Request){
 }
 
 //pegar o exame do cornavírus
-func GetExam(w http.ResponseWriter, r *http.Request){
+func GetExam(w http.ResponseWriter, r *http.Request) {
 	//Pegue o examo no banco de dados
-	exam,err:=database.SearchExamID("1")
+	exam, err := database.SearchExamID("1")
 
 	// verifique se não houve um erro
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -50,7 +50,7 @@ func GetExam(w http.ResponseWriter, r *http.Request){
 	rsp, err := json.Marshal(exam)
 
 	// verifique se tudo ocorreu tudo bem
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 

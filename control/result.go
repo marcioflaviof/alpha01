@@ -1,8 +1,8 @@
 package control
 
 import (
-	"alpha01/database"
 	"alpha01/configs"
+	"alpha01/database"
 	"alpha01/models"
 	"encoding/json"
 	"io/ioutil"
@@ -10,19 +10,19 @@ import (
 )
 
 //obter resposta do teste e retornar o resultado
-func PostResult(w http.ResponseWriter, r*http.Request){
+func PostResult(w http.ResponseWriter, r *http.Request) {
 	//pegue o resultado do teste
 	body := r.Body
-	bytes,_:= ioutil.ReadAll(body)
+	bytes, _ := ioutil.ReadAll(body)
 
 	// instancie o objeto de resultado
 	var result models.Result
 
 	// insira o resultado no objeto
-	err := json.Unmarshal(bytes,&result)
+	err := json.Unmarshal(bytes, &result)
 
 	// notifique caso ocorra algum erro
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(configs.RESPONSE_ERRO))
 		return
@@ -32,7 +32,7 @@ func PostResult(w http.ResponseWriter, r*http.Request){
 	err = database.InsertResult(result)
 
 	// notifique se ocorrer um erro no banco de dados
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(configs.RESPONSE_ERRO))
 		return
@@ -45,7 +45,7 @@ func PostResult(w http.ResponseWriter, r*http.Request){
 	response, err := json.Marshal(rsp)
 
 	// notifique se ocorrer um erro com o JSON
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(configs.RESPONSE_ERRO))
 		return
@@ -55,7 +55,7 @@ func PostResult(w http.ResponseWriter, r*http.Request){
 	w.Write([]byte(response))
 }
 
-func CreateResponse(score float32)(r models.Response){
+func CreateResponse(score float32) (r models.Response) {
 	//inserir a pontuação no response http
 	r.User_Score = score
 
