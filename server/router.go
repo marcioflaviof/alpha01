@@ -11,14 +11,14 @@ func createHandler() (handler *mux.Router) {
 	// creats router
 	handler = mux.NewRouter()
 
-	// associate register user route
-	handler.HandleFunc("/test/{id}", control.GetTestID)
+	//application routes
+	handler.HandleFunc("/", control.MainMenu).Methods("GET")
 
-	//paginaprincipal GET
-	//handler.HandleFunc("/", control.MainMenu).Methods("GET")
-	//questionario GET
-	handler.HandleFunc("/test", control.GetTest).Methods("GET")
-	//resultado POST (resultado no response)
+	//exams routes
+	handler.HandleFunc("/exam", control.GetExam).Methods("GET")
+	handler.HandleFunc("/exam/{id}", control.GetExamID).Methods("GET")
+
+	//results routes
 	handler.HandleFunc("/result", control.PostResult).Methods("POST")
 
 

@@ -12,7 +12,3 @@ type Response struct{
 	//dados internos
 	//dados externos
 }
-
-type Report struct{
-	Media float32
-}

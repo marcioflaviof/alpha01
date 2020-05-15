@@ -24,7 +24,7 @@ const (
 //  DB Collections
 //========================
 const (
-	TEST_COLLECTION = "tests"
+	EXAM_COLLECTION = "exams"
 	RESULT_COLLECTION = "results"
 )
 

@@ -8,22 +8,14 @@ import (
 	"strings"
 )
 
-func RegisterUser(w http.ResponseWriter, r *http.Request) {
-
-	message := r.URL.Path
-	message = strings.TrimPrefix(message, "/")
-	message = "Hello " + message
-	w.Write([]byte(message))
-}
-
-func GetTestID(w http.ResponseWriter, r *http.Request){
+func GetExamID(w http.ResponseWriter, r *http.Request){
 	//get the ID in URL
 	vars := mux.Vars(r)
 	num_id := vars["id"]
 	//n_id, _ := strconv.Atoi(num_id) 
 
-	//search the test with the ID
-	test, err := database.SearchTestID(num_id)
+	//search the exam with the ID
+	exam, err := database.SearchExamID(num_id)
 
 	//check if none searching error occurs
 	if err != nil{
@@ -31,8 +23,8 @@ func GetTestID(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	//parse test to JSON
-	resp, err := json.Marshal(test)
+	//parse exam to JSON
+	resp, err := json.Marshal(exam)
 
 	//check if none parsing error occurs
 	if err != nil{
@@ -43,10 +35,10 @@ func GetTestID(w http.ResponseWriter, r *http.Request){
 	w.Write([]byte(resp))
 }
 
-//pegar o teste do cornavírus
-func GetTest(w http.ResponseWriter, r *http.Request){
-	//Pegue o testo no banco de dados
-	test,err:=database.SearchTestID("1")
+//pegar o exame do cornavírus
+func GetExam(w http.ResponseWriter, r *http.Request){
+	//Pegue o examo no banco de dados
+	exam,err:=database.SearchExamID("1")
 
 	// verifique se não houve um erro
 	if err != nil{
@@ -54,14 +46,14 @@ func GetTest(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	// transforme o teste em JSON
-	rt, err := json.Marshal(test)
+	// transforme o exame em JSON
+	rsp, err := json.Marshal(exam)
 
 	// verifique se tudo ocorreu tudo bem
 	if err != nil{
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 
-	// envie o teste ao solicitante
-	w.Write([]byte(rt))
+	// envie o exame ao solicitante
+	w.Write([]byte(rsp))
 }
