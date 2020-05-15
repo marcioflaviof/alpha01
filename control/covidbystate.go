@@ -11,12 +11,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
+//Estados is states
 type Estados struct {
 	UF     string `json:"uf"`
 	Casos  int    `json:"casos"`
 	Mortes int    `json:"mortes"`
 }
 
+//Caso is cases
 type Caso struct {
 	Data    string `json:"data"`
 	Casos   int    `json:"casos"`
@@ -24,6 +26,7 @@ type Caso struct {
 	Estados []Estados
 }
 
+//CovidbyState picks covid by state
 func CovidbyState(w http.ResponseWriter, r *http.Request) {
 	var cases []Caso
 

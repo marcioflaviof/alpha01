@@ -7,14 +7,24 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func createHandler() (r *mux.Router) {
+func createHandler() (handler *mux.Router) {
 
 	// creats router
-	r = mux.NewRouter()
+	handler = mux.NewRouter()
 
-	// associate register user route
-	r.HandleFunc("/", control.CovidData).Methods(http.MethodGet)
-	r.HandleFunc("/{uf}", control.CovidbyState).Methods(http.MethodGet)
+	//application routes
+	handler.HandleFunc("/", control.MainMenu).Methods("GET")
+
+	//exams routes
+	handler.HandleFunc("/exam", control.GetExam).Methods("GET")
+	handler.HandleFunc("/exam/{id}", control.GetExamID).Methods("GET")
+
+	//results routes
+	handler.HandleFunc("/result", control.PostResult).Methods("POST")
+
+	//covid numbers routes
+	handler.HandleFunc("/covid", control.CovidData).Methods(http.MethodGet)
+	handler.HandleFunc("/covid/{uf}", control.CovidbyState).Methods(http.MethodGet)
 
 	// returns handle
 	return
