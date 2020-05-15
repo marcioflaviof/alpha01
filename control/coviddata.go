@@ -8,19 +8,7 @@ import (
 	"time"
 )
 
-type Estados struct {
-	UF     string `json:"uf"`
-	Casos  int    `json:"casos"`
-	Mortes int    `json:"mortes"`
-}
-
-type Caso struct {
-	Data    string `json:"data"`
-	Casos   int    `json:"casos"`
-	Mortes  int    `json:"mortes"`
-	Estados []Estados
-}
-
+//CasoseMortes is a model from deaths and cases in covid
 type CasoseMortes struct {
 	Casos  int `json:"casos"`
 	Mortes int `json:"mortes"`
@@ -32,8 +20,6 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 	var mortes []CasoseMortes
 
 	d := time.Now().AddDate(0, 0, -1)
-
-	log.Println(d.Format("2006-01-02"))
 
 	url := "https://covid-api-brasil.herokuapp.com/casos/" + d.Format("2006-01-02")
 
@@ -58,9 +44,9 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 
 	//log.Println(string(body))
 
-	jsonErr := json.Unmarshal(body, &mortes)
-	if jsonErr != nil {
-		log.Fatal(jsonErr)
+	err = json.Unmarshal(body, &mortes)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	message, _ := json.Marshal(mortes[0])
