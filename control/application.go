@@ -5,20 +5,9 @@ import (
 	"alpha01/database"
 	"alpha01/models"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
-
-func Hello(w http.ResponseWriter, r *http.Request) {
-
-	log.Println("Hello World")
-
-	fmt.Println("Hello World")
-
-	w.Write([]byte("Hello World"))
-
-}
 
 func MainMenu(w http.ResponseWriter, r *http.Request) {
 	var m models.Menu
