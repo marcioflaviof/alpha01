@@ -6,7 +6,7 @@ package configs
 const (
 
 	// defines ip and port address for server instance
-	SERVER_ADDR = "back-questionario.herokuapp.com"
+	SERVER_ADDR = "back-questionario.herokuapp.com:8080"
 
 	// host for mongo db
 	MONGO_HOST = "mongodb+srv://admin:1010@cluster0-ga3ne.mongodb.net/COVIDTests?retryWrites=true&w=majority"
