@@ -9,22 +9,14 @@ const (
 	SERVER_ADDR = "localhost:8080"
 
 	// host for mongo db
-	MONGO_HOST = "mongodb://localhost:27017"
-)
-
-//=========================
-//	HTTP Routes
-//=========================
-const (
-	USER_PATH  = "/user/"
-	LOGIN_PATH = "/login/"
+	MONGO_HOST = "mongodb+srv://admin:<1010>@cluster0-ga3ne.mongodb.net/test?retryWrites=true&w=majority"
 )
 
 //========================
 //  DB Collections
 //========================
 const (
-	EXAM_COLLECTION = "exams"
+	EXAM_COLLECTION   = "exams"
 	RESULT_COLLECTION = "results"
 )
 
