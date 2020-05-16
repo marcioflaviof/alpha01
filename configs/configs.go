@@ -9,7 +9,7 @@ const (
 	SERVER_ADDR = "localhost:8080"
 
 	// host for mongo db
-	MONGO_HOST = "mongodb+srv://admin:1010@cluster0-ga3ne.mongodb.net/exams?retryWrites=true&w=majority"
+	MONGO_HOST = "mongodb+srv://admin:1010@cluster0-ga3ne.mongodb.net/COVIDTests?retryWrites=true&w=majority"
 )
 
 //========================
