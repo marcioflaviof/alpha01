@@ -1,0 +1,96 @@
+hash: 8f51443cf377d9e75163394ab6272c441be430ed57a1b950289e54fa8fc29fbe
+updated: 2020-05-15T21:15:21.847956799-03:00
+imports:
+- name: github.com/aws/aws-sdk-go
+  version: 0961961790e6dc3be58a7fa17bfc294143320536
+  subpackages:
+  - aws
+  - aws/awserr
+  - aws/awsutil
+  - aws/client/metadata
+  - aws/credentials
+  - aws/endpoints
+  - aws/request
+  - aws/signer/v4
+  - internal/context
+  - internal/ini
+  - internal/sdkio
+  - internal/sdkmath
+  - internal/shareddefaults
+  - internal/strings
+  - internal/sync/singleflight
+  - private/protocol
+  - private/protocol/rest
+- name: github.com/go-stack/stack
+  version: 2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a
+- name: github.com/golang/snappy
+  version: ff6b7dc882cf4cfba7ee0b9f7dcc1ac096c554aa
+- name: github.com/gorilla/mux
+  version: 75dcda0896e109a2a22c9315bca3bb21b87b2ba5
+- name: github.com/jmespath/go-jmespath
+  version: 2437e8417af5203cd4f1f97f99fc289bdeea1360
+- name: github.com/klauspost/compress
+  version: 4a2d40e4b07e5b3d333bc0569facd0f2dbf4ef39
+  subpackages:
+  - fse
+  - huff0
+  - snappy
+  - zstd
+  - zstd/internal/xxhash
+- name: github.com/pkg/errors
+  version: 614d223910a179a466c1767a985424175c39b465
+- name: github.com/xdg/scram
+  version: 7eeb5667e42c09cb51bf7b7c28aea8c56767da90
+- name: github.com/xdg/stringprep
+  version: 73f8eece6fdcd902c185bf651de50f3828bed5ed
+- name: go.mongodb.org/mongo-driver
+  version: f1f16a1f4d769d844812278841a184ae7f301732
+  subpackages:
+  - bson
+  - bson/bsoncodec
+  - bson/bsonoptions
+  - bson/bsonrw
+  - bson/bsontype
+  - bson/primitive
+  - event
+  - internal
+  - mongo
+  - mongo/options
+  - mongo/readconcern
+  - mongo/readpref
+  - mongo/writeconcern
+  - tag
+  - version
+  - x/bsonx
+  - x/bsonx/bsoncore
+  - x/mongo/driver
+  - x/mongo/driver/address
+  - x/mongo/driver/auth
+  - x/mongo/driver/auth/internal/gssapi
+  - x/mongo/driver/connstring
+  - x/mongo/driver/description
+  - x/mongo/driver/dns
+  - x/mongo/driver/mongocrypt
+  - x/mongo/driver/mongocrypt/options
+  - x/mongo/driver/ocsp
+  - x/mongo/driver/operation
+  - x/mongo/driver/session
+  - x/mongo/driver/topology
+  - x/mongo/driver/uuid
+  - x/mongo/driver/wiremessage
+- name: golang.org/x/crypto
+  version: 06a226fb4e3765ef3f48aa2852b401bc7b98e981
+  subpackages:
+  - ocsp
+  - pbkdf2
+- name: golang.org/x/sync
+  version: 43a5402ce75a95522677f77c619865d66b8c57ab
+  subpackages:
+  - errgroup
+  - semaphore
+- name: golang.org/x/text
+  version: 81608d7e9c6863c922f599e4ff1329a685218c0d
+  subpackages:
+  - transform
+  - unicode/norm
+testImports: []
