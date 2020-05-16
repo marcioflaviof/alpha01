@@ -12,11 +12,8 @@ func createHandler() (handler *mux.Router) {
 	// creats router
 	handler = mux.NewRouter()
 
-	//hello
-	handler.HandleFunc("/", control.Hello)
-
 	//application routes
-	handler.HandleFunc("/main", control.MainMenu).Methods("GET")
+	handler.HandleFunc("/", control.MainMenu).Methods("GET")
 
 	//exams routes
 	handler.HandleFunc("/exam", control.GetExam).Methods("GET")

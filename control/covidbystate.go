@@ -41,7 +41,7 @@ func CovidbyState(w http.ResponseWriter, r *http.Request) {
 	url := "https://covid-api-brasil.herokuapp.com/casos/" + d.Format("2006-01-02")
 
 	testClient := http.Client{
-		Timeout: time.Second * 5, // Maximum of 2 secs
+		Timeout: time.Second * 10, // Maximum of 2 secs
 	}
 
 	req, err := http.NewRequest(http.MethodGet, string(url), nil)
