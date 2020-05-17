@@ -27,24 +27,28 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 
 	req, err := http.NewRequest(http.MethodGet, string(url), nil)
 	if err != nil {
-		log.Fatal(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Get url error"))
 	}
 
 	res, err := testClient.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Requisition error"))
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		log.Fatal(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Body reading error"))
 	}
 
 	//log.Println(string(body))
 
 	err = json.Unmarshal(body, &mortes)
 	if err != nil {
-		log.Fatal(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Unmarshall error"))
 	}
 
 	message, _ := json.Marshal(mortes)
