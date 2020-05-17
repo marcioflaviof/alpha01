@@ -55,13 +55,39 @@ func PostResult(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(response))
 }
 
-func CreateResponse(score float32) (r models.Response) {
+func CreateResponse(score float64) (r models.Response) {
 	//inserir a pontuação no response http
 	r.User_Score = score
 
 	// Inserir as estatísticas da nossa base de dados
+	r.Internal_Stats = GetStats()
 
 	// inserir os dados de outros sites estatísticos
+
+	return
+}
+
+func GetStats()(stats models.Stats){
+	//instancia um slice de results
+	var results []models.Result
+
+	// puxe todos os resultados do banco de dados
+	results, err := database.SearchAllResults()
+
+	if err != nil{
+		return
+	}
+
+	//distribua as medidas estatisticas
+	//media
+	stats.Average = AverageResults(results)
+	//mediana
+	stats.Median = MedianResults(results)
+	a,b := BoundsResults(results)
+	//valor máximo
+	stats.Max = a
+	//valor Mínimo
+	stats.Min = b 
 
 	return
 }
