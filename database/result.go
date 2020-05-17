@@ -29,7 +29,7 @@ func InsertResult(r models.Result) (err error) {
 	return
 }
 
-func SearchResult(name string) (r models.Result, err error) {
+func SearchResultByUserName(name string) (r models.Result, err error) {
 
 	// utilize a coleção de resultados
 	c := Db.Collection(configs.RESULT_COLLECTION)
@@ -45,6 +45,27 @@ func SearchResult(name string) (r models.Result, err error) {
 
 	// apresente que ação foi realizada
 	log.Printf("[INFO] test searched: %v", r)
+
+	return
+}
+
+func SearchAllResults() (rs []models.Result, err error){
+	// utilize a coleção de resultados
+	c := Db.Collection(configs.RESULT_COLLECTION)
+
+	// busque todos os resultados
+	cur, err := c.Find(context.TODO(), bson.D{{}})
+
+	if err != nil{
+		log.Printf("[ERROR] fail to find all Results: %v %v",err, cur)
+		return
+	}
+
+	if err = cur.All(context.TODO(),&rs); err != nil{
+		log.Printf("[ERROR] fail to get all Results %v", err,rs)
+	}
+
+	log.Printf("[INFO] all results searched")
 
 	return
 }
