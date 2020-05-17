@@ -5,30 +5,20 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/gorilla/mux"
 )
 
-//Estados is states
-type Estados struct {
-	UF     string `json:"uf"`
-	Casos  int    `json:"casos"`
-	Mortes int    `json:"mortes"`
-}
-
-//Caso is cases
-type Caso struct {
-	Data    string `json:"data"`
-	Casos   int    `json:"casos"`
-	Mortes  int    `json:"mortes"`
-	Estados []Estados
+//CovidEstados is how many covid cases exists in states
+type CovidEstados struct {
+	Casos  int `json:"casos"`
+	Mortes int `json:"mortes"`
 }
 
 //CovidbyState picks covid by state
 func CovidbyState(w http.ResponseWriter, r *http.Request) {
-	var cases []Caso
+	var cases CovidEstados
 
 	params := mux.Vars(r)
 
@@ -36,9 +26,7 @@ func CovidbyState(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(uf)
 
-	d := time.Now().AddDate(0, 0, -1)
-
-	url := "https://covid-api-brasil.herokuapp.com/casos/" + d.Format("2006-01-02")
+	url := "https://covid-api-brasil.herokuapp.com/" + uf
 
 	testClient := http.Client{
 		Timeout: time.Second * 10, // Maximum of 2 secs
@@ -64,18 +52,10 @@ func CovidbyState(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	for _, estado := range cases[0].Estados {
+	message, _ := json.Marshal(cases)
 
-		if estado.UF == strings.ToUpper(uf) {
+	log.Println(string(message))
 
-			message, _ := json.Marshal(estado)
-
-			log.Println(string(message))
-
-			w.Write([]byte(message))
-
-		}
-
-	}
+	w.Write([]byte(message))
 
 }

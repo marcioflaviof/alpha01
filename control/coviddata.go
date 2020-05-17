@@ -10,18 +10,16 @@ import (
 
 //CasoseMortes is a model from deaths and cases in covid
 type CasoseMortes struct {
-	Casos  int `json:"casos"`
-	Mortes int `json:"mortes"`
+	Casos  int `json:"totalCasos"`
+	Mortes int `json:"totalMortes"`
 }
 
 // CovidData pega os dados da data de ontem sobre o covid
 func CovidData(w http.ResponseWriter, r *http.Request) {
 
-	var mortes []CasoseMortes
+	var mortes CasoseMortes
 
-	d := time.Now().AddDate(0, 0, -1)
-
-	url := "https://covid-api-brasil.herokuapp.com/casos/" + d.Format("2006-01-02")
+	url := "https://covid-api-brasil.herokuapp.com/casos"
 
 	testClient := http.Client{
 		Timeout: time.Second * 10, // Maximum of 2 secs
@@ -49,7 +47,7 @@ func CovidData(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	message, _ := json.Marshal(mortes[0])
+	message, _ := json.Marshal(mortes)
 
 	log.Println(string(message))
 
