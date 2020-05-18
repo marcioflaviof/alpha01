@@ -30,7 +30,7 @@ func SearchExamID(id string) (t models.Exam, err error) {
 	return
 }
 
-func insertExam(t models.Exam) (err error) {
+func InsertExam(t models.Exam) (err error) {
 
 	// select the collection of exams
 	c := Db.Collection(configs.EXAM_COLLECTION)
