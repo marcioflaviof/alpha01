@@ -26,6 +26,7 @@ func createHandler() (handler *mux.Router) {
 	//covid numbers routes
 	handler.HandleFunc("/covid", control.CovidData).Methods(http.MethodGet)
 	handler.HandleFunc("/covid/{uf}", control.CovidbyState).Methods(http.MethodGet)
+	handler.HandleFunc("/coviddiff/{uf}", control.CovidDifference).Methods(http.MethodGet)
 
 	// returns handle
 	return

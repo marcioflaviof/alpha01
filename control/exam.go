@@ -1,13 +1,14 @@
 package control
 
 import (
-	"github.com/gorilla/mux"
 	"alpha01/database"
 	"alpha01/models"
 	"encoding/json"
 	"io/ioutil"
-	"net/http"
 	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func GetExamID(w http.ResponseWriter, r *http.Request) {
@@ -59,7 +60,7 @@ func GetExam(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(rsp))
 }
 
-func PostExam(w http.ResponseWriter, r *http.Request){
+func PostExam(w http.ResponseWriter, r *http.Request) {
 
 	// instancie o modelo de exame
 	var ex models.Exam
@@ -69,18 +70,18 @@ func PostExam(w http.ResponseWriter, r *http.Request){
 	bytes, err := ioutil.ReadAll(body)
 
 	//notifique caso ocorra algum erro
-	if err != nil{
-		log.Printf("[ERRO] Cannot read the body request: %v %v",err,ex)
+	if err != nil {
+		log.Printf("[ERRO] Cannot read the body request: %v %v", err, ex)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
 	// insira o body no modelo
-	err = json.Unmarshal(bytes,&ex)
+	err = json.Unmarshal(bytes, &ex)
 
 	// notifique caso ocorra algum erro
-	if err != nil{
-		log.Printf("[ERRO] Cannot unmarshal the JSON: %v %v",err,ex)
+	if err != nil {
+		log.Printf("[ERRO] Cannot unmarshal the JSON: %v %v", err, ex)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -96,13 +97,13 @@ func PostExam(w http.ResponseWriter, r *http.Request){
 	// crie um exame preview para ter o controle de resposta
 	err = database.CreateExamsPreview(ex.Exam_ID)
 
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
 	// notifique a operação na resposta
-	w.Write([]byte(`{"msg":"Exam was inserted"`))
+	w.Write([]byte(`{"msg":"Exam was inserted"}`))
 
 	return
 }
