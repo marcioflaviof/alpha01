@@ -78,25 +78,21 @@ func covidTime(tempoMes int, tempoDia int, r *http.Request) (int, int) {
 	req, err := http.NewRequest(http.MethodGet, string(url), nil)
 	if err != nil {
 		log.Println(err)
-		return
 	}
 
 	res, err := testClient.Do(req)
 	if err != nil {
 		log.Println(err)
-		return
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Println(err)
-		return
 	}
 
 	err = json.Unmarshal(body, &cases)
 	if err != nil {
 		log.Println(err)
-		return
 	}
 
 	for _, estado := range cases[0].Estados {

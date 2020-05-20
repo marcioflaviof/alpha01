@@ -35,7 +35,7 @@ func PostResult(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("[ERRO] Cannot unmarshal the JSON: %v %v",err,result)
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(configs.RESPONSE_ERRO))
+		w.Write([]byte(configs.UNMARSHAL_ERROR))
 		return
 	}
 
@@ -45,7 +45,7 @@ func PostResult(w http.ResponseWriter, r *http.Request) {
 	// notifique se ocorrer um erro no banco de dados
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(configs.RESPONSE_ERRO))
+		w.Write([]byte(configs.DBINS_ERROR))
 		return
 	}
 
@@ -55,7 +55,7 @@ func PostResult(w http.ResponseWriter, r *http.Request) {
 	// notifique se ocorrer um erro no banco de dados
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(configs.RESPONSE_ERRO))
+		w.Write([]byte(configs.DBUPD_ERROR))
 		return
 	}
 
@@ -69,7 +69,7 @@ func PostResult(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("[ERRO] Cannot parse the response to JSON: %v %v",err,rsp)
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(configs.RESPONSE_ERRO))
+		w.Write([]byte(configs.MARSHAL_ERROR))
 		return
 	}
 

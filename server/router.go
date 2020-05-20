@@ -14,6 +14,7 @@ func createHandler() (handler *mux.Router) {
 
 	//application routes
 	handler.HandleFunc("/", control.MainMenu).Methods(http.MethodGet)
+	handler.HandleFunc("/ep/{id}/update", control.UpdateExamPreview).Methods(http.MethodPut)
 
 	//exams routes
 	handler.HandleFunc("/exam", control.GetExam).Methods(http.MethodGet)

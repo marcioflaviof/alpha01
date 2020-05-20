@@ -8,3 +8,7 @@ type ExamPreview struct{
 	Exam_ID string      `json: "exam_id"`
 	Number_Results int  `json: "number_results"`
 }
+
+type ExamPreviewUpdate struct{
+	Updated ExamPreview
+}

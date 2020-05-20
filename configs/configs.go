@@ -6,8 +6,8 @@ package configs
 const (
 
 	// defines ip and port address for server instance
-	SERVER_ADDR = ":"
-	//SERVER_ADDR = "localhost:8080"
+	//SERVER_ADDR = ":"
+	SERVER_ADDR = "localhost:8080"
 
 	// host for mongo db
 	MONGO_HOST = "mongodb+srv://admin:1010@cluster0-ga3ne.mongodb.net/COVIDTests?retryWrites=true&w=majority"
@@ -28,4 +28,9 @@ const (
 //========================
 const (
 	RESPONSE_ERRO = `{"msg":"ocorreu um erro"}`
+	MARSHAL_ERROR = `{"msg":"marshal error"}`
+	UNMARSHAL_ERROR = `{"msg":"unmarshal error"}`
+	DBUPD_ERROR = `{"msg":"update error in data base"}`
+	DBINS_ERROR = `{"msg":"insert erro in data base"}`
+	DBSRC_ERROR = `{"msg":"search error in data base"}`
 )

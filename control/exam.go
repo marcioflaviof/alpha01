@@ -2,6 +2,7 @@ package control
 
 import (
 	"alpha01/database"
+	"alpha01/configs"
 	"alpha01/models"
 	"encoding/json"
 	"io/ioutil"
@@ -20,8 +21,9 @@ func GetExamID(w http.ResponseWriter, r *http.Request) {
 	exam, err := database.SearchExamID(num_id)
 
 	//check if none searching error occurs
-	if err != nil {
+	if != nil{
 		w.WriteHeader(http.StatusNotFound)
+		w.Write(configs.DBSRC_ERROR)
 		return
 	}
 
@@ -31,6 +33,7 @@ func GetExamID(w http.ResponseWriter, r *http.Request) {
 	//check if none parsing error occurs
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(configs.MARSHAL_ERROR)
 	}
 
 	//return the response with the JSON
@@ -43,8 +46,9 @@ func GetExam(w http.ResponseWriter, r *http.Request) {
 	exam, err := database.SearchExamID("1")
 
 	// verifique se não houve um erro
-	if err != nil {
+	if != nil{
 		w.WriteHeader(http.StatusNotFound)
+		w.Write(configs.DBSRC_ERROR)
 		return
 	}
 
@@ -54,6 +58,8 @@ func GetExam(w http.ResponseWriter, r *http.Request) {
 	// verifique se tudo ocorreu tudo bem
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(configs.MARSHAL_ERROR)
+		return
 	}
 
 	// envie o exame ao solicitante
@@ -91,6 +97,7 @@ func PostExam(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(configs.DBINS_ERROR)
 		return
 	}
 
@@ -99,6 +106,7 @@ func PostExam(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write(configs.DBINS_ERROR)
 		return
 	}
 

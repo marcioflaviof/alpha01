@@ -87,7 +87,24 @@ func IncrementExamPreview(id string)(err error){
 	}
 
 	// informe que a operação foi realizada
-	log.Print("[INFO] updated Exam Preview: %v",ep)
+	log.Printf("[INFO] updated Exam Preview: %v",ep)
+
+	return
+}
+
+func UpdateExamPreviewNumber(id string, new_num int)(ep models.ExamPreview,err error){
+
+	// utilize a coleção de exam preview
+	c := Db.Collection(configs.EPREV_COLLECTION)
+
+	// atualize o banco de dados com o modelo utilizado
+	err = c.FindOneAndUpdate(context.TODO(), bson.D{{"exam_id",id}}, bson.D{{"$set",bson.D{{"number_results",new_num}}}}).Decode(&ep)
+
+	if err != nil{
+		log.Printf("[ERRO] cannot update the ExamPreview: %v %v", err, id)
+	}
+
+	log.Printf("[INFO] updated Exam Preview: %v",ep)
 
 	return
 }
