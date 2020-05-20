@@ -36,8 +36,8 @@ func CovidDifference(w http.ResponseWriter, r *http.Request) {
 	var diff Difference
 
 	yesterdayCases, yesterdayDeaths := covidTime(0, 1, r)
-	lastWeekCases, weekDeaths := covidTime(0, 7, r)
-	monthCases, monthDeaths := covidTime(1, 0, r)
+	lastWeekCases, weekDeaths := covidTime(0, 8, r)
+	monthCases, monthDeaths := covidTime(1, 1, r)
 
 	diff.DiffWeekC = yesterdayCases - lastWeekCases
 
