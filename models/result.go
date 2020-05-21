@@ -9,14 +9,9 @@ type Result struct {
 	User_Local string  `json: "user_local"`
 }
 
-type Geo struct{
-	latitude   float64
-	longitude  float64
-}
-
 type Response struct {
 	User_Score float64 `json: "user_score"`
-	Internal_Stats Stats
+	Internal_Stats Stats `json: "internal_stats"`
 	//dados externos
 }
 

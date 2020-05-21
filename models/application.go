@@ -1,7 +1,7 @@
 package models
 
 type Menu struct {
-	Avaliable_Exams []ExamPreview
+	Avaliable_Exams []ExamPreview `json: "avaliable_exams"`
 }
 
 type ExamPreview struct{
@@ -10,5 +10,5 @@ type ExamPreview struct{
 }
 
 type ExamPreviewUpdate struct{
-	Updated ExamPreview
+	Updated ExamPreview `json: "updated"`
 }
