@@ -1,8 +1,8 @@
 package control
 
 import (
-	"alpha01/database"
 	"alpha01/configs"
+	"alpha01/database"
 	"alpha01/models"
 	"encoding/json"
 	"io/ioutil"
@@ -21,7 +21,7 @@ func GetExamID(w http.ResponseWriter, r *http.Request) {
 	exam, err := database.SearchExamID(num_id)
 
 	//check if none searching error occurs
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(configs.DBSRC_ERROR))
 		return
@@ -46,7 +46,7 @@ func GetExam(w http.ResponseWriter, r *http.Request) {
 	exam, err := database.SearchExamID("1")
 
 	// verifique se não houve um erro
-	if err != nil{
+	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(configs.DBSRC_ERROR))
 		return
