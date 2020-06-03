@@ -40,7 +40,7 @@ func InsertExam(t models.Exam) (err error) {
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming in insertexam: %v, %v", err, t)
+		log.Printf("[ERROR] Error in insertexam: %v, %v", err, t)
 	}
 
 	// confirm action of inserting a exam
@@ -56,7 +56,7 @@ func SearchAllExams() (exams []models.Exam, err error) {
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming searching All exams: %v, %v", err, cursor)
+		log.Printf("[ERROR] Error in search All exams: %v, %v", err, cursor)
 		return
 	}
 
@@ -64,7 +64,7 @@ func SearchAllExams() (exams []models.Exam, err error) {
 
 	// check if not error occurs
 	if err != nil {
-		log.Printf("[ERROR] probleming searching All exams: %v, %v", err, cursor)
+		log.Printf("[ERROR] Error in search All exams: %v, %v", err, cursor)
 		return
 	}
 
